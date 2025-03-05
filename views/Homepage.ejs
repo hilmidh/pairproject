@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="background-image: url('https://plus.unsplash.com/premium_photo-1681843661864-3f46bfb1a4fb?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c2Nob29sJTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D');">
+    <%- include('navbarHP') %>
+<% if (success) { %>
+<h4 style="color: aquamarine;">
+  <%= success %>
+</h4>
+<% } %>
+<div style="text-align: center; width: 40%; margin-left: auto; margin-right: auto; margin-top: 15%;">
+  <div class="card text-bg-primary mb-3">
+    <div class="card-header">Welcome to Yuk Belajar!</div>
+    <div class="card-body">
+      <p class="card-text">Learn new things everyday!</p>
+      <p class="card-text">Take all the course you want!📝</p>
+    </div>
+  </div>
+
+
+<div style="max-width: 18rem; margin-left: auto; margin-right: auto;">
+<a class="btn" href="/login">
+    Log In
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+    </svg>
+  </a>
+  <a class="btn" href="regis">
+    Sign Up
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+    </svg>
+  </a>
+</div>
+  <%- include('_script') %>
+</body>
+</html>
