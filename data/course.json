@@ -1,0 +1,37 @@
+[
+    {
+      "name": "Introduction to Algebra",
+      "duration": "2 hours",
+      "material": "Algebra is a branch of mathematics that deals with symbols and the rules for manipulating those symbols. It is a unifying thread of almost all of mathematics.",
+      "description": "Learn the basics of algebra and solve equations.",
+      "CategoryId": 1
+    },
+    {
+      "name": "Physics Fundamentals",
+      "duration": "3 hours",
+      "material": "Physics is the natural science that studies matter, its motion, and behavior through space and time, and the related entities of energy and force.",
+      "description": "Understand the basic principles of physics.",
+      "CategoryId": 2
+    },
+    {
+      "name": "World History",
+      "duration": "4 hours",
+      "material": "World history is the study of major events and civilizations that have shaped human society over time, from ancient times to the modern era.",
+      "description": "Explore the key events in world history.",
+      "CategoryId": 3
+    },
+    {
+      "name": "English Grammar",
+      "duration": "2.5 hours",
+      "material": "English grammar is the set of structural rules governing the composition of clauses, phrases, and words in the English language.",
+      "description": "Master the rules of English grammar.",
+      "CategoryId": 4
+    },
+    {
+      "name": "Introduction to Painting",
+      "duration": "1.5 hours",
+      "material": "Painting is the practice of applying paint, pigment, color, or other medium to a solid surface. It is a form of visual art.",
+      "description": "Learn the basics of painting techniques.",
+      "CategoryId": 5
+    }
+  ]

@@ -1,0 +1,32 @@
+[
+    {
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPrR98O0zE25KKE49UpNYw-uAebMaMQjlOmQ&s",
+      "address": "Jl. Merdeka No. 123, Jakarta",
+      "phoneNumber": "081234567890",
+      "fullName": "John Doe"
+    },
+    {
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa5-0Lde1AEFBbzbvAYSZGBqokUQz6PjMD6g&s",
+      "address": "Jl. Sudirman No. 456, Bandung",
+      "phoneNumber": "082345678901",
+      "fullName": "Jane Smith"
+    },
+    {
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4wX_M2JFE0_OaYhHUa8gVXoElLwxdc4C71g&s",
+      "address": "Jl. Gatot Subroto No. 789, Surabaya",
+      "phoneNumber": "083456789012",
+      "fullName": "Alice Johnson"
+    },
+    {
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6O4CY56wMmYse4uRbi1ROcxxKn2oasGyKYQ&s",
+      "address": "Jl. Thamrin No. 101, Medan",
+      "phoneNumber": "084567890123",
+      "fullName": "Bob Brown"
+    },
+    {
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-qir4LcfO0Y2Z5EWvxnaY0GmcEW1Ld9fYGA&s",
+      "address": "Jl. Diponegoro No. 202, Yogyakarta",
+      "phoneNumber": "085678901234",
+      "fullName": "Charlie Davis"
+    }
+  ]
