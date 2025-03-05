@@ -11,13 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Profile.belongsTo(models.User, {foreignKey: "UserId"})
     }
   }
   Profile.init({
     photo: DataTypes.STRING,
     address: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
-    UserId: DataTypes.INTEGER
+    UserId: DataTypes.INTEGER,
+    fullName: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Profile',

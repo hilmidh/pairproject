@@ -18,8 +18,17 @@ module.exports = {
       material: {
         type: Sequelize.TEXT
       },
+      description:{
+        type: Sequelize.STRING
+      },
       CategoryId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Categories',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       createdAt: {
         allowNull: false,
