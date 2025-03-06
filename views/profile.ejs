@@ -62,18 +62,20 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center mb-5" style="font-family: 'Arial', sans-serif;">User Profile</h1>
-
+        <% if (msg) { %>
+            <h3><%= msg %></h3>
+        <% } %>
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card profile-card">
-                    <img src="<%= user.photoUrl %>" class="card-img-top" alt="Profile Photo">
+                    <img src="<%= profile ? profile.photo : null%>" class="card-img-top" alt="Profile Photo">
                     <div class="card-body">
-                        <h5 class="card-title"><%= user.fullName %></h5>
-                        <p class="card-text"><strong>Address:</strong> <%= user.address %></p>
-                        <p class="card-text"><strong>Phone Number:</strong> <%= user.phoneNumber %></p>
+                        <h5 class="card-title"><%= profile ? profile.fullName : null  %></h5>
+                        <p class="card-text"><strong>Address:</strong> <%= profile ? profile.address : null %></p>
+                        <p class="card-text"><strong>Phone Number:</strong> <%= profile ? profile.phoneNumber : null %></p>
                     </div>
                     <div class="card-footer">
-                        <a href="/profile/edit" class="btn btn-edit">Edit Profile</a>
+                        <a href="/profile/<%= user.id %>/edit" class="btn btn-edit">Edit Profile</a>
                     </div>
                 </div>
             </div>

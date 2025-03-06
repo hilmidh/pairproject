@@ -39,9 +39,17 @@ let userIsAdmin = (req,res,next) => {
 
 
 routes.get('/courses', userLoggedIn, Controller.showCourses)
+routes.get('/courses/:id', userLoggedIn, Controller.takeCourse)
+routes.get('/profile/:id', userLoggedIn, Controller.showProfile)
+routes.get('/profile/:id/edit', userLoggedIn, Controller.showEditProfile)
+routes.post('/profile/:id/edit', userLoggedIn, Controller.handleEditProfile)
+
+
+
 routes.get('/admin', userLoggedIn, userIsAdmin, Controller.showCoursesAdmin)
 routes.get('/admin/addCourse', userLoggedIn, userIsAdmin, Controller.addCourse)
 routes.post('/admin/addCourse', userLoggedIn, userIsAdmin, Controller.handleAddCourse)
+routes.get('/admin/editCourse/:id', userLoggedIn, userIsAdmin, Controller.showEditCourse)
 
 
 
