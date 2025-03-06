@@ -1,17 +1,22 @@
 [
     {
-      "name": "Mathematics"
+      "name": "Mathematics",
+      "photo" : "https://img.freepik.com/premium-vector/mathematics-font-icon-with-formula_1639-27364.jpg?semt=ais_hybrid"
     },
     {
-      "name": "Science"
+      "name": "Science",
+      "photo" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCioMnrjxlmzMsdTiPeKerZGIu-eA-lGmtAA&s"
     },
     {
-      "name": "History"
+      "name": "History",
+      "photo" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSBbpVNe0QpNrtG2c_dSoxuoY0wOVQ8q1pUA&s"
     },
     {
-      "name": "Language"
+      "name": "Language",
+      "photo" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqcGhGPnW7HDcuicaX0JCanKu7GkeYki-xvQ&s"
     },
     {
-      "name": "Art"
+      "name": "Art",
+      "photo" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5ngr9gQVmOfgKhs75cJbqYcCQUBKo_Bg3dg&s"
     }
   ]
