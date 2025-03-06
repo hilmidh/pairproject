@@ -71,13 +71,14 @@
     <% data.forEach(data => { %>
     <div class="container">
         <div class="image-container">
-            <img src="https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=1200" alt="Image">
+            <img src="<%= data.Category.photo %>" alt="Image">
         </div>
         <div class="text-container">
             <h1><%= data.name %></h1>
-            <p>Duration: <%= data.duration %></p>
+            <p>Duration: <%= data.getTime %></p>
+            <p>Category: <%= data.Category.name %></p>
             <p>Description: <%= data.description %></p>
-            <a class="btn" href="/courses/<%= data.id %>">Ambil Course</a>
+            <a class="btn" href="/courses/<%= data.id %>">Enroll Course</a>
         </div>
     </div>
     <% }); %>

@@ -31,7 +31,7 @@ let userLoggedIn = (req,res,next) => {
 
 let userIsAdmin = (req,res,next) => {
     if(req.session.role!=="admin") {
-        res.redirect(`/courses?msg=Unfortunately, only admin can do that`)
+        res.redirect(`/courses?msg=Unfortunately, only admin can access this feature`)
     } else {
         next()
     }  
@@ -39,6 +39,7 @@ let userIsAdmin = (req,res,next) => {
 
 
 routes.get('/courses', userLoggedIn, Controller.showCourses)
+routes.get('/courses/pdf/:id', userLoggedIn, Controller.pdf)
 routes.get('/courses/:id', userLoggedIn, Controller.takeCourse)
 routes.get('/profile/:id', userLoggedIn, Controller.showProfile)
 routes.get('/profile/:id/edit', userLoggedIn, Controller.showEditProfile)
@@ -50,6 +51,8 @@ routes.get('/admin', userLoggedIn, userIsAdmin, Controller.showCoursesAdmin)
 routes.get('/admin/addCourse', userLoggedIn, userIsAdmin, Controller.addCourse)
 routes.post('/admin/addCourse', userLoggedIn, userIsAdmin, Controller.handleAddCourse)
 routes.get('/admin/editCourse/:id', userLoggedIn, userIsAdmin, Controller.showEditCourse)
+routes.post('/admin/editCourse/:id', userLoggedIn, userIsAdmin, Controller.handleEditCourse)
+routes.get('/admin/delete/:id', userLoggedIn, userIsAdmin, Controller.delete)
 
 
 

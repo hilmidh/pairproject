@@ -1,5 +1,8 @@
-const {Category, Course, Profile, User} = require('../models/index.js');
+const {Category, Course, Profile, User, CourseUser} = require('../models/index.js');
 const {comparePassword} = require('../helpers/helper.js');
+var pdf = require("pdf-node");
+var fs = require("fs");
+const { Op } = require("sequelize");
 
 class Controller {
     // static async home(req, res){
@@ -36,7 +39,8 @@ class Controller {
 
     static async showLogin (req,res){
         try {
-            res.render('login')
+            let {msg} = req.query
+            res.render('login', {msg})
         } catch (error) {
             res.send(error)
         }
@@ -76,10 +80,18 @@ class Controller {
     static async showCourses(req, res){
         try {
             let userId = req.session.userId
-            let {msg} = req.query
-            let data = await Course.findAll()
+            let {msg, search} = req.query
+            let data = await Course.getCoursesAndCat()
+            if(search){
+                data = await Course.findAll({
+                    order:[["id", "ASC"]],
+                    include: [{model: Category}],
+                    where: {name: {[Op.iLike]: `%${search}%`}}
+                  })
+            }
             res.render('showCourseUser', {data, msg, userId})
         } catch (error) {
+            console.log(error)
             res.send(error)
         }
     }
@@ -87,8 +99,17 @@ class Controller {
     static async showCoursesAdmin(req, res){
         try {
             let userId = req.session.userId
-            let msg
-            let data = await Course.findAll()
+            let {msg, search} = req.query
+            let data = await Course.getCoursesAndCat()
+            
+            if(search){
+                data = await Course.findAll({
+                    order:[["id", "ASC"]],
+                    include: [{model: Category}],
+                    where: {name: {[Op.iLike]: `%${search}%`}}
+                  })
+            }
+           
             res.render('showCourseAdmin', {data, msg, userId})
         } catch (error) {
             res.send(error)
@@ -97,9 +118,12 @@ class Controller {
 
     static async logout(req, res){
         try {
-            req.session.userId = null
-            req.session.role = null
-            res.redirect('/login')
+            req.session.destroy((err) => {
+                if(err) res.send(err)
+                else {
+                    res.redirect('/')
+                }
+            })
         } catch (error) {
             res.send(error)
         }
@@ -108,7 +132,8 @@ class Controller {
     static async addCourse(req, res){
         try {
             let userId = req.session.userId
-            res.render('formAddCourse', {userId})
+            let data = await Category.findAll()
+            res.render('formAddCourse', {userId, data})
         } catch (error) {
             res.send(error)
         }
@@ -161,7 +186,7 @@ class Controller {
     static async handleEditProfile(req, res){
         try {
             let {id} = req.params
-            let {fullname, photo, address, phoneNumber} = req.body
+            let {fullName, photo, address, phoneNumber} = req.body
             
            
             
@@ -171,11 +196,11 @@ class Controller {
             })
             
             if(!user.Profile){
-                await Profile.create({fullname, photo, address, phoneNumber, UserId: id})
+                await Profile.create({fullName, photo, address, phoneNumber, UserId: id})
                 res.redirect(`/profile/${id}`)
             }
             else{
-                await Profile.update({fullname, photo, address, phoneNumber}, {where: {UserId: id}})
+                await Profile.update({fullName, photo, address, phoneNumber}, {where: {UserId: id}})
                     res.redirect(`/profile/${id}`)
             }
         } catch (error) {
@@ -187,9 +212,22 @@ class Controller {
     static async showEditCourse(req, res){
         try {
             let {id} = req.params
+            let userId = req.session.userId
             let data = await Course.findByPk(id)
             let categories = await Category.findAll()
-            res.render('editCourse', {data, categories})
+            res.render('editCourse', {data, categories, userId})
+        } catch (error) {
+            res.send(error)
+        }
+    }
+
+    static async handleEditCourse(req, res){
+        try {
+            let {id} = req.params
+            let {name, duration, material, description, CategoryId} = req.body
+            let course = await Course.findByPk(id)
+            await course.update({name, duration, material, description, CategoryId})
+            res.redirect('/admin')
         } catch (error) {
             res.send(error)
         }
@@ -198,9 +236,89 @@ class Controller {
     static async takeCourse(req, res){
         try {
             let {id} = req.params
+            let userId = req.session.userId
             let data = await Course.findByPk(id)
+            let cat = await Category.findByPk(data.CategoryId)
+
+            let conjunction = await CourseUser.findAll({
+                where:{[Op.and]:[{UserId: userId}, {CourseId: id}]}
+            })
+
             let msg
-            res.render('courseDetail', {data, msg})
+            if(conjunction){
+                msg = "You've already enrolled this course"
+            }
+            else{
+                await CourseUser.create({UserId: userId, CourseId: id})
+            }
+            
+            res.render('courseDetail', {data, msg, userId, cat})
+        } catch (error) {
+            res.send(error)
+        }
+    }
+
+    static async delete(req, res){
+        try {
+            let {id} = req.params
+            let course = await Course.findByPk(id)
+            let deleted = course.name
+            await course.destroy()
+            res.redirect(`/admin?msg=${deleted}`)
+        } catch (error) {
+            res.send(error)
+        }
+    }
+
+    static async pdf(req, res){
+        try {
+            let {id} = req.params
+            let course = await Course.findByPk(id)
+
+            var html = fs.readFileSync("template.html", "utf8");
+            var options = {
+                format: "A4",
+                orientation: "portrait",
+                border: "10mm",
+                header: {
+                    height: "45mm",
+                    contents: '<div style="text-align: center;">Author: Shyam Hajare</div>'
+                },
+                footer: {
+                    height: "28mm",
+                    contents: {
+                        first: 'Cover page',
+                        2: 'Second page', // Any page number is working. 1-based index
+                        default: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
+                        last: 'Last Page'
+                    }
+                }
+            };
+
+            var users = [
+                {
+                  name: course.name,
+                  material: course.material,
+                },
+              ];
+              var document = {
+                html: html,
+                data: {
+                  users: users,
+                },
+                path: `./output/${course.name}.pdf`,
+                type: "pdf",
+              };
+            
+              pdf(document, options)
+              .then((res) => {
+                console.log(res);
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+
+            res.redirect(`/courses/${course.id}`)
         } catch (error) {
             res.send(error)
         }
