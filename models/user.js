@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const {hashPassword} = require('../helpers/helper.js');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -23,5 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'User',
   });
+  User.beforeCreate((input) => {
+    input.password = hashPassword(input.password)
+  })
   return User;
 };

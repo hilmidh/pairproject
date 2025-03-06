@@ -8,15 +8,16 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <form class="d-flex" role="search">
-            <a class="navbar-brand" href="/post/add">Admin</a>
-        </form>
+        <!-- <form class="d-flex" role="search"> -->
+            <a class="navbar-brand" href="/admin">Admin</a>
+            <a class="navbar-brand" href="/logout">Logout</a>
+        <!-- </form> -->
         
         <form action="/posts" method="get" class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search by title" aria-label="Search" name="search">
             <button class="btn btn-primary" type="submit">Search</button> 
         </form>
->
+
         <a href="/profile" class="btn btn-link">
             <i class="fas fa-user-circle" style="font-size: 24px;"></i>
         </a>
