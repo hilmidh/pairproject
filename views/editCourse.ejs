@@ -39,28 +39,28 @@
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Name</label>
                     <input value="<%= data.name %>" type="text" class="form-control" aria-describedby="emailHelp"
-                        name="name">
+                        name="name" required>
                 </div>
 
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Duration</label>
                     <input value="<%= data.duration %>" type="text" class="form-control" aria-describedby="emailHelp"
-                        name="duration">
+                        name="duration" required>
                 </div>
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Material</label>
                     <input value="<%= data.material %>" type="text" class="form-control" aria-describedby="emailHelp"
-                        name="material">
+                        name="material" required>
                 </div>
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Description</label>
                     <input value="<%= data.description %>" type="text" class="form-control" aria-describedby="emailHelp"
-                        name="description">
+                        name="description" required>
                 </div>
 
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Category</label>
-                    <select name="CategoryId" class="form-select" id="inputGroupSelect01">
+                    <select name="CategoryId" class="form-select" id="inputGroupSelect01" required>
                         <% categories.forEach(element=> { %>
                             <option <%=element.id === data.CategoryId ? "selected" : "" %> value = "<%=element.id %>">
                                     <%=element.name %>

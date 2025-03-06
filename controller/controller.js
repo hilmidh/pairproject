@@ -20,7 +20,8 @@ class Controller {
 
     static async showRegis(req, res){
         try {
-            res.render('signup')
+            let {msg} = req.query
+            res.render('signup', {msg})
         } catch (error) {
             res.send(error)
         }
@@ -33,7 +34,13 @@ class Controller {
             // console.log(req.body)
             res.redirect(`/login`)
         } catch (error) {
-            res.send(error)
+            if(error.name === "SequelizeValidationError"){
+                let msg = error.errors.map(e => e.message)
+                res.redirect(`./regis?msg=${msg}`)
+            }
+            else{
+                res.send(error)
+            }
         }
     }
 
@@ -109,8 +116,20 @@ class Controller {
                     where: {name: {[Op.iLike]: `%${search}%`}}
                   })
             }
+
+            let courses = await Course.findAll({
+                include: [{model: User}],
+                order:  [["id", "ASC"]]
+            })
+            // res.send(courses)
+            courses = courses.map(e =>{
+                let users = e.Users.map(el => el.email.substring(0, el.email.indexOf("@")))
+                return users
+            })
+
+            // res.send(courses)
            
-            res.render('showCourseAdmin', {data, msg, userId})
+            res.render('showCourseAdmin', {data, msg, userId, courses})
         } catch (error) {
             res.send(error)
         }
@@ -161,9 +180,15 @@ class Controller {
             if(!user.Profile){
                 msg = "Your profile is empty, please edit your profile"
             }
+            let courses = await User.findOne({
+                where:{id},
+                include: Course
+            })
+            courses = courses.Courses
+            // res.send(courses)
             // res.send(profile)
             let profile = user.Profile
-            res.render('profile', {user, msg, profile, userId})
+            res.render('profile', {user, msg, profile, userId, courses})
         } catch (error) {
             res.send(error)
         }
@@ -243,15 +268,16 @@ class Controller {
             let conjunction = await CourseUser.findAll({
                 where:{[Op.and]:[{UserId: userId}, {CourseId: id}]}
             })
+            // res.send(conjunction)
 
             let msg
-            if(conjunction){
+            if(conjunction.length = 0){
                 msg = "You've already enrolled this course"
             }
             else{
                 await CourseUser.create({UserId: userId, CourseId: id})
             }
-            
+
             res.render('courseDetail', {data, msg, userId, cat})
         } catch (error) {
             res.send(error)
