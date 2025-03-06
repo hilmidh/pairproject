@@ -105,7 +105,7 @@ class Controller {
 
     static async addCourse(req, res){
         try {
-            res.render('formAddCourse')
+            res.render('formaddCourse')
         } catch (error) {
             res.send(error)
         }
@@ -113,7 +113,9 @@ class Controller {
 
     static async handleAddCourse(req, res){
         try {
-            console.log(req.body)
+            let {name, duration, material, description, CategoryId} = req.body
+            await Course.create({name, duration, material, description, CategoryId})
+            res.redirect('/admin')
         } catch (error) {
             res.send(error)
         }
