@@ -14,6 +14,32 @@ module.exports = (sequelize, DataTypes) => {
       Course.belongsToMany(models.User, {through: "CourseUser"})
       Course.belongsTo(models.Category, {foreignKey: "CategoryId"})
     }
+
+    static async getCoursesAndCat(){
+      let result = await Course.findAll({
+        order:[["id", "ASC"]],
+        include: [{model: sequelize.models.Category}],
+      })
+      return result
+    }
+
+    get getTime() {
+      
+    const hours = Math.floor(this.duration / 60);
+    
+    
+    const remainingMinutes = this.duration % 60;
+    
+    let result
+    hours > 1 ? result = `${hours} hours` : result = `${hours} hour`
+    
+    
+    if (remainingMinutes > 0) {
+      remainingMinutes > 1 ? result += ` and ${remainingMinutes} minutes` : result += ` and ${remainingMinutes} minute`
+    }
+    
+    return result;
+  }
   }
   Course.init({
     name: DataTypes.STRING,

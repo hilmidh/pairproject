@@ -113,6 +113,7 @@
     <div class="login-container">
         <form class="login-form" method="post" action="/login">
             <h2>Login</h2>
+            <p style="color: red;"><%= msg ? msg : null %></p>
             <div class="input-box">
                 <input type="text" required="required" name="email"/>
                 <span>Email</span>

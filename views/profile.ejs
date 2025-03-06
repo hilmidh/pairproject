@@ -62,6 +62,10 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center mb-5" style="font-family: 'Arial', sans-serif;">User Profile</h1>
+        <center>
+            <h4><%= user.email %></h4>
+
+        </center>
         <% if (msg) { %>
             <div style="text-align: center; color: red;">
                 <h3><%= msg %></h3>

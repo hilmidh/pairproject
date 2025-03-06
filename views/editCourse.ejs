@@ -35,7 +35,7 @@
         <div class="container">
 
             <h1>Edit Course</h1>
-            <form method="post" action="/post/edit/<%= data.id %>">
+            <form method="post" action="">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Name</label>
                     <input value="<%= data.name %>" type="text" class="form-control" aria-describedby="emailHelp"
@@ -54,16 +54,16 @@
                 </div>
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Description</label>
-                    <input value="<%= data.material %>" type="text" class="form-control" aria-describedby="emailHelp"
+                    <input value="<%= data.description %>" type="text" class="form-control" aria-describedby="emailHelp"
                         name="description">
                 </div>
 
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Category</label>
-                    <select name="TagId" class="form-select" id="inputGroupSelect01">
+                    <select name="CategoryId" class="form-select" id="inputGroupSelect01">
                         <% categories.forEach(element=> { %>
-                            <option <%=element.id===data.CategoryId ? "selected" : "" %> value = "<%=element.id %>">
-                                    <%=element.category %>
+                            <option <%=element.id === data.CategoryId ? "selected" : "" %> value = "<%=element.id %>">
+                                    <%=element.name %>
                             </option>
                             <% }) %>
                     </select>
