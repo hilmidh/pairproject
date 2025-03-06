@@ -4,14 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>detail course</title>
+    <title>Detail Course</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
 
         h1 {
@@ -19,67 +22,78 @@
             margin: 20px 0;
         }
 
-        .container {
+        .content {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
-            max-width: 900px;
-            margin: 20px auto;
+            width: 100%;
             padding: 20px;
-            gap: 20px;
+            gap: 40px;
             background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .image-container img {
-            width: 300px;
-            height: 300px;
-            object-fit: cover;
+            width: 500px;
+            height: auto;
             border-radius: 10px;
+            object-fit: cover;
         }
 
         .text-container {
             text-align: left;
             flex: 1;
+            max-width: 600px;
         }
 
         .text-container h1 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
             color: #222;
         }
 
         .text-container p {
-            font-size: 1rem;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
             color: #555;
+            line-height: 1.6;
         }
 
-        .text-container p:last-child {
-            margin-bottom: 0;
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
+<%- include('navbar3') %>
 
 <% if (msg) { %>
 <h1><%= msg %></h1>
 <% } %>
+
 <body>
-    
-    <div class="container">
+    <div class="content">
         <div class="image-container">
-            <img src="https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=1200" alt="Image">
+            <img src="https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=1200" alt="Course Image">
         </div>
+
         <div class="text-container">
             <h1><%= data.name %></h1>
-            <p>Duration: <%= data.duration %></p>
-            <p>Material: <%= data.material %></p>
-            <a class="btn" href="belum tau ini linknya gimana Node Pdf<%= data.id %>"> Download Course </a>
+            <p><strong>Duration:</strong> <%= data.duration %></p>
+            <p><strong>Material:</strong> <%= data.material %></p>
+            <a class="btn" href="belum tau ini linknya gimana Node Pdf<%= data.id %>">Download Course</a>
         </div>
     </div>
-  
+
     <%- include('_script') %>
 </body>
 
