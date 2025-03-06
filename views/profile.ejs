@@ -79,6 +79,12 @@
                         <h5 class="card-title"><%= profile ? profile.fullName : null  %></h5>
                         <p class="card-text"><strong>Address:</strong> <%= profile ? profile.address : null %></p>
                         <p class="card-text"><strong>Phone Number:</strong> <%= profile ? profile.phoneNumber : null %></p>
+                        <p class="card-text"><strong>Courses Enrolled:</strong></p>
+                        <ul>
+                            <% courses.forEach(e => { %>
+                            <li><%= e.name %></li>
+                            <% }) %>
+                        </ul>
                     </div>
                     <div class="card-footer">
                         <a href="/profile/<%= user.id %>/edit" class="btn btn-edit">Edit Profile</a>

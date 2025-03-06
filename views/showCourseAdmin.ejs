@@ -73,7 +73,7 @@
     <center>
         <a href="/admin/addCourse" class="btn btn-primary">Add new course</a>
     </center>
-    <% data.forEach(data => { %>
+    <% data.forEach((data, i) => { %>
     <div class="container">
         <div class="image-container">
             <img src="<%= data.Category.photo %>" alt="Image">
@@ -83,6 +83,7 @@
             <p>Duration: <%= data.getTime %></p>
             <p>Category: <%= data.Category.name %></p>
             <p>Description: <%= data.description %></p>
+            <p>Students: <%= courses[i].length > 0 ? courses[i].join(', ') : 'No students' %> </p>
             <a class="btn" href="/admin/editCourse/<%= data.id %>"> Edit </a>
             <a class="btn" href="/admin/delete/<%= data.id %>"> Delete </a>
         </div>
