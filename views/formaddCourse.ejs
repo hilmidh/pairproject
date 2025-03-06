@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Course</title>
 </head>
 <%- include('navbar') %>
 
@@ -11,7 +12,7 @@
         <div class="container">
 
                             <h1>Add New Course</h1>
-                            <form method="post" action="/post/add">
+                            <form method="post" action="/admin/addCourse">
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="inputGroupSelect01">Name</label>
                                     <input type="text" class="form-control" aria-describedby="emailHelp" name="name">
@@ -23,11 +24,11 @@
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Material</span>
-                                    <textarea class="form-control bg-light" id="description" name="material" rows="5" required></textarea>
+                                    <textarea class="form-control bg-light" id="description" name="material" rows="5" ></textarea>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Description</span>
-                                    <textarea class="form-control bg-light" id="description" name="description" rows="5" required></textarea>
+                                    <textarea class="form-control bg-light" id="description" name="description" rows="5" ></textarea>
                                 </div>
 
 

@@ -67,10 +67,13 @@
 <h1><%= msg %></h1>
 <% } %>
 <body>
-    <% posts.forEach(data => { %>
+    <center>
+        <a href="/admin/addCourse" class="btn btn-primary">Add new course</a>
+    </center>
+    <% data.forEach(data => { %>
     <div class="container">
         <div class="image-container">
-            <img src="<%= data.imgUrl %>" alt="Image">
+            <img src="https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg?w=1200" alt="Image">
         </div>
         <div class="text-container">
             <h1><%= data.name %></h1>
