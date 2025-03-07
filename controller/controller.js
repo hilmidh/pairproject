@@ -1,5 +1,5 @@
 const {Category, Course, Profile, User, CourseUser} = require('../models/index.js');
-const {comparePassword} = require('../helpers/helper.js');
+const {comparePassword, getOnlyName} = require('../helpers/helper.js');
 var pdf = require("pdf-node");
 var fs = require("fs");
 const { Op } = require("sequelize");
@@ -123,7 +123,7 @@ class Controller {
             })
             // res.send(courses)
             courses = courses.map(e =>{
-                let users = e.Users.map(el => el.email.substring(0, el.email.indexOf("@")))
+                let users = e.Users.map(el => getOnlyName(el.email))
                 return users
             })
 
