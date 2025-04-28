@@ -10,9 +10,5 @@ const comparePassword = (password, hashedPassword) => {
     return bcrypt.compareSync(password, hashedPassword)
 }
 
-const getOnlyName = email => {
-    return email.substring(0, email.indexOf("@"))
-}
 
-
-module.exports = {hashPassword, comparePassword, getOnlyName};
+module.exports = {hashPassword, comparePassword};
